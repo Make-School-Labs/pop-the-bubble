@@ -55,8 +55,20 @@ Complete the following Phases of the `Pop The Bubble` iOS Game.
 
 ### Phase 3 - Bubble Interactions
 
-1. Create a variable to hold Points
-1. Handle touch events when user taps a Bubble
+1. Create a variable to hold Points and a label to show the points on screen
+
+  ![Show Points](assets/showPoints.png)
+
+2. Setup PointsLabel to display points
+
+  | Step 1: Create function to display points | Step 2: Call setupPointsLabel() |
+  | :------------- | :------------- |
+  | ![Crete Function](assets/pointsLabel.png) | ![Call setupPointsLabel() ](assets/callSetupPointsLabel.png) |
+
+
+2. Handle touch events when user taps a Bubble
+
+
 1. Increment number of points when user taps a Bubble
 1. Remove Bubble from scene when tapped
 
