@@ -15,7 +15,7 @@ Complete the following Phases of the `Pop The Bubble` iOS Game.
 
 2. Remove all the .sks files
 
-  ![Game Controller](assets/removeSksFiles.png)
+  ![Remove Sks Files](assets/removeSksFiles.png)
 
 3. Replace the contents of `viewDidLoad` in `GameViewController.swift` to setup the GameScene for presentation
 
@@ -27,15 +27,29 @@ Complete the following Phases of the `Pop The Bubble` iOS Game.
 
 ---
 
-### Phase 2 - Create Bubbles
+### Phase 2 - Create A Bubble
 
-1. Write a function that generates randomly colored bubbles
+1. Write a function that generates a bubble
+
+  ![Generate Bubble](assets/generateBubble.png)
+
+2. Modify the function to add a random color to the bubble being created
+
+  ![Generate Bubble With Color](assets/bubbleWithColor.png)
 
 ---
 
-### Phase 2 - Generate Random Bubbles
+### Phase 2 - Timer - Generate Random Bubbles
 
 1. Setup a timer to generate a random bubble to add to the scene every (x) seconds
+
+  ![Setup Timer](assets/setupTimer.png)
+
+2. Move the bubble towards the top of the screen
+
+  | Step 1: Create Move Bubble Function | Step 2: Call moveBubble() |
+  | :------------- | :------------- |
+  | ![Move Bubble To Top](assets/moveBubble.png) | ![Call Move Bubble](assets/callMoveButton.png) |
 
 ---
 
