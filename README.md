@@ -80,5 +80,16 @@ Complete the following Phases of the `Pop The Bubble` iOS Game.
 
 ### Phase 4 - Game Over Scene
 
-1. Create a scene to handle when the game is over
-1. Create a label to render whether a game was won or lost
+1. Create a function to check if the game is over
+
+  ![Game Over Scene](assets/isGameOver.png)
+
+2. Create a scene to handle when the game is over
+
+  ![Handle Game Over](assets/handleGameOver1.png)
+
+3. Present `GameOverScene` when won
+
+  ![Game Over Present](assets/handleGameOver2.png)
+
+4. Display results of game and restart button

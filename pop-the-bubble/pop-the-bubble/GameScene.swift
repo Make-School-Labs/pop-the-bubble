@@ -27,7 +27,7 @@ class GameScene: SKScene {
         guard let scene = scene else {return}
         
         pointsLabel.fontSize = 30
-        pointsLabel.text = "Points: \(points)"
+        updatePoints(points: points)
         
         // Position pointsLabel in scene
         // Place on the upper left corner
@@ -123,10 +123,31 @@ class GameScene: SKScene {
         )
 
         // Remove the bubble when it reaches the top of the screen
+        // Deduct points if bubble reaches top without a tap
         bubble.run(translateAction) {
             bubble.removeFromParent()
+            
+            self.points -= 1
+            self.updatePoints(points: self.points)
+            
+            if self.isGameOver() {
+                self.handleGameOver(won: false)
+            }
         }
         
+    }
+    
+    func updatePoints(points: Int) {
+        pointsLabel.text = "Points: \(points)"
+    }
+    
+    func handleGameOver(won: Bool) {
+        let gameOverScene = GameOverScene(
+            size: self.size,
+            won: won
+        )
+        
+        self.view?.presentScene(gameOverScene)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -142,7 +163,7 @@ class GameScene: SKScene {
         
         // Increment points
         points += 1
-        pointsLabel.text = "Points: \(points)"
+        updatePoints(points: points)
         bubble.removeFromParent()
     }
     
@@ -153,5 +174,9 @@ class GameScene: SKScene {
         guard touchedNode.name == "Bubble" else {return nil}
         
         return touchedNode
+    }
+    
+    func isGameOver() -> Bool {
+        return points < 0
     }
 }
