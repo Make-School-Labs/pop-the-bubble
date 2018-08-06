@@ -65,13 +65,17 @@ Complete the following Phases of the `Pop The Bubble` iOS Game.
   | :------------- | :------------- |
   | ![Crete Function](assets/pointsLabel.png) | ![Call setupPointsLabel() ](assets/callSetupPointsLabel.png) |
 
+3. Handle touch events when user taps a Bubble
 
-2. Handle touch events when user taps a Bubble
+  ![Touched Bubble](assets/touchesBegan1.png)
 
+  ![Touched Bubble](assets/touchesBegan2.png)
 
-1. Increment number of points when user taps a Bubble
-1. Remove Bubble from scene when tapped
+3. Increment number of points and remove Bubble when user taps a Bubble
 
+  ![Increment Points](assets/handleTouch1.png)
+
+  ![Increment Points](assets/handleTouch2.png)
 ---
 
 ### Phase 4 - Game Over Scene

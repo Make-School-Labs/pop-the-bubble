@@ -72,6 +72,8 @@ class GameScene: SKScene {
             circleOfRadius: CGFloat.random(in: 30...100)
         )
         
+        bubble.name = "Bubble"
+        
         // Generate a random color
         let bubbleColor = UIColor(
             hue: CGFloat.random(in: 0...360),
@@ -125,5 +127,31 @@ class GameScene: SKScene {
             bubble.removeFromParent()
         }
         
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {return}
+        
+        handleTouch(touch: touch)
+    }
+    
+    func handleTouch(touch: UITouch) {
+        // User touched a bubble
+        guard let bubble = touchedABubble(touch: touch)
+            else {return}
+        
+        // Increment points
+        points += 1
+        pointsLabel.text = "Points: \(points)"
+        bubble.removeFromParent()
+    }
+    
+    func touchedABubble(touch: UITouch) -> SKNode? {
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        
+        guard touchedNode.name == "Bubble" else {return nil}
+        
+        return touchedNode
     }
 }
