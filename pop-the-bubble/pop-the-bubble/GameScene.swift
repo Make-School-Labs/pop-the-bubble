@@ -32,14 +32,12 @@ class GameScene: SKScene {
         // Position pointsLabel in scene
         // Place on the upper left corner
         // Adds half the width of the label because the anchor of the label is in its center
-        let xPos = scene.frame.minX + (pointsLabel.frame.size.width / 2)
-        let yPos = scene.frame.minY + (pointsLabel.frame.size.height + 25)
+        let xPos = pointsLabel.frame.size.width
+        let yPos = (scene.frame.size.height) - (pointsLabel.frame.size.height) - 10
         
         let pointPosition = CGPoint(x: xPos, y: yPos)
         
-        let pointsLocationInScene = scene.convertPoint(fromView: pointPosition)
-        
-        pointsLabel.position = pointsLocationInScene
+        pointsLabel.position = pointPosition
         
         // Add as a child of scene
         addChild(pointsLabel)
@@ -130,9 +128,7 @@ class GameScene: SKScene {
             self.points -= 1
             self.updatePoints(points: self.points)
             
-            if self.isGameOver() {
-                self.handleGameOver(won: false)
-            }
+            self.handleGameOver(status: self.isGameOver())
         }
         
     }
@@ -141,13 +137,35 @@ class GameScene: SKScene {
         pointsLabel.text = "Points: \(points)"
     }
     
-    func handleGameOver(won: Bool) {
-        let gameOverScene = GameOverScene(
-            size: self.size,
-            won: won
-        )
+    func handleGameOver(status: (over: Bool, won: Bool)) {
+        guard status.over else {return}
         
-        self.view?.presentScene(gameOverScene)
+        timer.invalidate()
+        
+        let message = status.won ? "You Won! 😁" : "You Lost 🙁"
+        
+        let view = SKShapeNode(rectOf: CGSize(width: 300, height: 250))
+        view.fillColor = SKColor.white
+        view.zPosition = 50
+        view.position = self.view!.center
+        addChild(view)
+        
+        // Game status label
+        let label = SKLabelNode()
+        label.text = message
+        label.fontSize = 40
+        label.fontColor = SKColor.black
+        view.addChild(label)
+        label.position = CGPoint(x: 0, y: 60)
+        
+        // Restart Game Button
+        let restartButton = SKShapeNode(rectOf: CGSize(width: 230, height: 60))
+        restartButton.fillColor = SKColor.orange
+        restartButton.position = CGPoint(x: 0, y: -10)
+        let restartLabel = SKLabelNode(text: "Play Again")
+        restartLabel.position = CGPoint(x: 0, y: -(restartLabel.frame.size.height / 2))
+        view.addChild(restartButton)
+        restartButton.addChild(restartLabel)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -176,7 +194,7 @@ class GameScene: SKScene {
         return touchedNode
     }
     
-    func isGameOver() -> Bool {
-        return points < 0
+    func isGameOver() -> (over: Bool, won: Bool) {
+        return (over: points < 0, won: false)
     }
 }
